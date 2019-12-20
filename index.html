@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <title>Lista De Tareas</title>
+</head>
+
+<body>
+  <div id="appVue">
+    <nav class="navbar is-transparent">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <img src="./images/to-do.jfif" alt="To-Do List Logo" width="112" height="28">
+        </a>
+        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <div id="navbarExampleTransparentExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="#">
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="field is-grouped">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            To-Do List
+          </h1>
+          <h2 class="subtitle">
+            Hecho con Bulma y VueJs
+          </h2>
+        </div>
+      </div>
+    </section>
+    <div>
+      <h1 v-if="datos.length > 0">Agregar una Tarea</h1>
+      <h1 v-else="datos"><strong>Crear una Tarea</strong></h1>
+      <input type="text" class="input" v-model="newTarea" v-on:keyup.enter="addTarea">
+    </div>
+    <div class="right">
+      <h1></h1>
+      <h1 v-if="datos.length > 0"><strong>Tareas Por Hacer</strong></h1>
+      <h1 v-else="datos"><strong>No hay Tareas Pendientes</strong></h1>
+      <ul>
+        <li class="tarea-dato" v-for="dato in datos" v-bind:class="dato.completed == true ? 'disabled' : ''"
+          @click="dato.completed = ! dato.completed">
+          <input type="checkbox" v-model="doneTarea">
+          {{ dato.tarea }} <button v-on:click="eliminarTarea(datos)">Eliminar Tarea</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
